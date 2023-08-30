@@ -1,0 +1,52 @@
+{% include "header.html" %}
+{% block content %}
+
+<div class="col-md-9 p-lg-5 mx-auto my-5">
+    <body>
+        <div class="container">
+        <header class="blog-header">
+
+            <h1> {{ cafes|length }} WORK-FRIENDLY PLACES</h1>
+            {% for cafe in cafes %}
+
+            <div class="row align-items-start">
+
+                    <div class="col">
+                         <div class="card my-2" style="width: 23rem;">
+                             <img alt="{{ cafe['name'] }}" src="{{ cafe['img_url'] }}" class="card-img-top">
+                         </div>
+                    </div>
+                    <div class="col my-2 d-flex flex-column position-static">
+                        <div>
+                            <h5 class="card-title"><a href="{{ url_for('show_cafe', cafe_id=cafe.id) }}" class="d-inline-block mb-2 text-success">{{ cafe['name'] }}</a></h5>
+                            <p class="mb-auto">{{ cafe['location'] }}</p>
+                            <a href="{{ cafe['map_url'] }}" class="link">Look at a map: Where is {{ cafe['name'] }}?</a>
+                            <p>
+                                    {% if cafe['has_wifi'] == True %}
+                                        <img width="24" alt="provided by WIFI" src="{{ url_for('static', filename='images/wifi.png')}}">
+                                    {% endif %}
+                                    {% if cafe['has_sockets'] == True %}
+                                        <img width="26" alt="provided by Sockets" src="{{ url_for('static', filename='images/socket.png')}}">
+                                    {% endif %}
+                                    {% if cafe['has_toilet'] == True %}
+                                        <img width="26" alt="provided by Sockets" src="{{ url_for('static', filename='images/wc.png')}}">
+                                    {% endif %}
+                                    {% if cafe['can_take_calls'] == True %}
+                                        <img width="30" alt="provided by Sockets" src="{{ url_for('static', filename='images/phone.png')}}">
+                                    {% endif %}
+
+                            </p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+
+        </header>
+        </div>
+
+    </body>
+</div>
+
+
+{% endblock %}

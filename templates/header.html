@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>Cafe&Wifi API</title>
+
+    <link href="//fonts.googleapis.com/css?family=PT+Serif:400,700|Noto+Sans:400,700" rel="stylesheet" type="text/css">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+
+  </head>
+
+  <body>
+  <div class="container">
+    <nav class="navbar navbar-white navbar-expand justify-content-between fixed-top d-flex flex-wrap container-fluid px-3">
+      <a class="navbar-brand" href="/"><span id="logo">
+        <img width="24" alt="provided by WIFI" src="https://its.unl.edu/images/services/icons/Wi-Fi_icon-01.png">
+        <span class="laptop">Laptop</span><span class="friendly">Friendly</span></span>
+      </a>
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('home') }}"><i class="fa fa-fw fa-globe-americas"></i>
+          <span>Home</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('see_all_cafes') }}"><i class="fa fa-fw fa-globe-americas"></i>
+          <span>All Cafes</span>
+          </a>
+        </li>
+        {% if current_user.id == 1: %}
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('add_new_cafe') }}"><i class="fa fa-fw fa-plus-circle"></i>
+          <span>Suggest Places</span>
+          </a>
+        </li>
+        {% endif %}
+        {% if current_user.is_authenticated: %}
+        <li class="nav-item">
+        <a class="nav-link" href="{{ url_for('logout') }}"><i class="fa fa-fw fa-users"></i>
+        <span>Login Out</span>
+        </a></li>
+        {% endif %}
+        <!-- Login -->
+        {% if not current_user.is_authenticated: %}
+        <li class="nav-item">
+        <a class="nav-link" href="{{ url_for('login') }}"><i class="fa fa-fw fa-users"></i>
+        <span>Login</span>
+        </a></li>
+        <!-- Join us -->
+        <li class="nav-item">
+        <a class="nav-link" href="{{ url_for('register') }}"><i class="fa fa-fw fa-users"></i>
+        <span>Join Community</span>
+        </a></li>
+        {% endif %}
+      </ul>
+    </nav>
+  </div>
+  </body>
+</html>

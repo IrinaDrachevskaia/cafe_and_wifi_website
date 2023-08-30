@@ -1,0 +1,44 @@
+{% include "header.html" %}
+{% block content %}
+
+<div class="col-md-6 p-lg-5 mx-auto my-5" style="background-image: url({{ url_for('static', filename='images/coffee.jpeg')}}); background-size: cover; width: 100%; hight: 100%; background-attachment: fixed">
+
+<body>
+
+    <header class="intro text-center">
+        <div class="container">
+
+            <h1> Welcome to the Cafe & Wifi API</h1>
+            <div class="row justify-content-center">
+                <div class="col-md-6 col-sm-8">
+                <p>From coffee shops to hotel lobbies, discover everyday places to work and connect.</p>
+
+                <a class="btn btn-lg btn-success book-now" href="{{ url_for('show_cafe_at_location', loct='London Bridge') }}">Explore London Bridge</a>
+                <br><br>
+                <!-- Nothing in the area -->
+                <span class="text-gray">
+                Not in
+                    <a class="ambassador" href="{{ url_for('show_cafe_at_location', loct='London Bridge') }}">London Bridge</a>?
+                    See
+                    {% for location in loc %}
+                        {% if location != 'London Bridge' %}
+                            <a class="ambassador" href="{{ url_for('show_cafe_at_location', loct=location) }}">{{ location }}</a>,
+                        {% endif %}
+                    {% endfor %}
+                    {% if current_user.id == 1: %}
+                    or
+                    <a class="ambassador" href="{{ url_for('add_new_cafe') }}">suggest another location!</a>
+                    {% endif %}
+                    </span>
+
+                </div>
+            </div>
+        </div>
+    </header>
+
+</div>
+</body>
+</div>>
+
+{% endblock %}
+
